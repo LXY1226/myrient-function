@@ -13,9 +13,11 @@
   --accent-info: #58a6ff;
   
   --stage-claimed: #58a6ff;
+  --stage-downloaded: #d29922;
   --stage-verified: #a371f7;
   --stage-archived: #22c55e;
   --stage-claimed-bg: rgba(88, 166, 255, 0.12);
+  --stage-downloaded-bg: rgba(210, 153, 34, 0.12);
   --stage-verified-bg: rgba(163, 113, 247, 0.12);
   --stage-archived-bg: rgba(34, 197, 94, 0.12);
 }
@@ -141,13 +143,14 @@ main {
 }
 
 .progress-segment.claimed { background-color: var(--stage-claimed); }
+.progress-segment.downloaded { background-color: var(--stage-downloaded); }
 .progress-segment.verified { background-color: var(--stage-verified); }
 .progress-segment.archived { background-color: var(--stage-archived); }
 
 /* Stats Grid */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -163,6 +166,7 @@ main {
 
 .stat-item.total { border-left-color: var(--text-secondary); }
 .stat-item.claimed { border-left-color: var(--stage-claimed); }
+.stat-item.downloaded { border-left-color: var(--stage-downloaded); }
 .stat-item.verified { border-left-color: var(--stage-verified); }
 .stat-item.archived { border-left-color: var(--stage-archived); }
 

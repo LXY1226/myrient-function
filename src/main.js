@@ -11,6 +11,8 @@ const STATE = {
     total_size: 0,
     claimed_files: 0,
     claimed_size: 0,
+    downloaded_files: 0,
+    downloaded_size: 0,
     verified_files: 0,
     verified_size: 0,
     archived_files: 0,
@@ -162,10 +164,12 @@ function renderOverviewContent() {
   const o = STATE.overview;
   const total = o.total_files || 0;
   const claimed = o.claimed_files || 0;
+  const downloaded = o.downloaded_files || 0;
   const verified = o.verified_files || 0;
   const archived = o.archived_files || 0;
 
   const claimedPct = total > 0 ? (claimed / total * 100) : 0;
+  const downloadedPct = total > 0 ? (downloaded / total * 100) : 0;
   const verifiedPct = total > 0 ? (verified / total * 100) : 0;
   const archivedPct = total > 0 ? (archived / total * 100) : 0;
 
@@ -175,11 +179,13 @@ function renderOverviewContent() {
     <div class="progress-container">
       <div class="progress-labels">
         <span>Claimed</span>
+        <span>Downloaded</span>
         <span>Verified</span>
         <span>Archived</span>
       </div>
       <div class="multi-progress-bar">
         <div class="progress-segment claimed" style="width: ${claimedPct}%"></div>
+        <div class="progress-segment downloaded" style="width: ${downloadedPct}%"></div>
         <div class="progress-segment verified" style="width: ${verifiedPct}%"></div>
         <div class="progress-segment archived" style="width: ${archivedPct}%"></div>
       </div>
@@ -195,6 +201,11 @@ function renderOverviewContent() {
         <div class="stat-label">Claimed</div>
         <div class="stat-value">${formatNumber(claimed)}</div>
         <div class="stat-sub">${formatSize(o.claimed_size || 0)}</div>
+      </div>
+      <div class="stat-item downloaded">
+        <div class="stat-label">Downloaded</div>
+        <div class="stat-value">${formatNumber(downloaded)}</div>
+        <div class="stat-sub">${formatSize(o.downloaded_size || 0)}</div>
       </div>
       <div class="stat-item verified">
         <div class="stat-label">Verified</div>
@@ -268,10 +279,12 @@ function renderTreeRow(dir, depth) {
   const indent = depth * 1.5;
   const total = dir.total_files || 0;
   const claimed = dir.claimed_files || 0;
+  const downloaded = dir.downloaded_files || 0;
   const verified = dir.verified_files || 0;
   const archived = dir.archived_files || 0;
 
   const claimedPct = total > 0 ? (claimed / total * 100) : 0;
+  const downloadedPct = total > 0 ? (downloaded / total * 100) : 0;
   const verifiedPct = total > 0 ? (verified / total * 100) : 0;
   const archivedPct = total > 0 ? (archived / total * 100) : 0;
 
@@ -292,6 +305,7 @@ function renderTreeRow(dir, depth) {
       <div class="tree-col-progress">
         <div class="multi-progress-bar" style="height: 8px;">
           <div class="progress-segment claimed" style="width: ${claimedPct}%"></div>
+          <div class="progress-segment downloaded" style="width: ${downloadedPct}%"></div>
           <div class="progress-segment verified" style="width: ${verifiedPct}%"></div>
           <div class="progress-segment archived" style="width: ${archivedPct}%"></div>
         </div>
